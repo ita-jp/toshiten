@@ -55,3 +55,8 @@ flyway {
 	user = 'user1'
 	password = 'password1'
 }
+
+// for reloading Thymeleaf template when it is modified
+tasks.named('bootRun') {
+	sourceResources sourceSets.main
+}
