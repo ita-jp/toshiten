@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: toshiten
+  datasource:
+    url: "jdbc:mysql://localhost:3307/ourdb"
+    username: "user1"
+    password: "password1"
+server:
+  port: 8089
