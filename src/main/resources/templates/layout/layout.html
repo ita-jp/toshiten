@@ -4,12 +4,9 @@
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 >
 <head>
-    <title>Layout page</title>
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">ToshiTen</title>
 </head>
 <body>
-<header>
-    <h1>My website</h1>
-</header>
 <section layout:fragment="content">
     <p>Page content goes here</p>
 </section>
