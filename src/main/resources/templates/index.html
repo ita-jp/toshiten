@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja"
-      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout}">
 <head>
@@ -8,7 +7,22 @@
 </head>
 <body>
 <section layout:fragment="content">
-    <p>This is a paragraph from content page 1</p>
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ショップ名</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="shop : ${shopList}" th:object="${shop}">
+                <th scope="row" th:text="*{id}"></th>
+                <td th:text="*{name}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
 </body>
 </html>
