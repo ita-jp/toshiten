@@ -7,3 +7,9 @@ spring:
     password: "password1"
 server:
   port: 8089
+logging:
+  level:
+    com:
+      example:
+        toshiten:
+          repository: DEBUG
