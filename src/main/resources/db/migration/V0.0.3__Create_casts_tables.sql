@@ -1,0 +1,7 @@
+CREATE TABLE casts
+(
+    id      BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name    VARCHAR(256) NOT NULL,
+    shop_id BIGINT       NOT NULL REFERENCES shops (id),
+    enabled BOOLEAN      NOT NULL DEFAULT TRUE
+);
