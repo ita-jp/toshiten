@@ -18,7 +18,7 @@
             <tbody>
             <tr th:each="role : ${roleList}" th:object="${role}">
                 <th scope="row" th:text="*{id}"></th>
-                <td th:text="*{name}"></td>
+                <td><a th:href="@{/sys/roles/{id}(id=*{id})}" th:text="*{name}"></a></td>
             </tr>
             </tbody>
         </table>

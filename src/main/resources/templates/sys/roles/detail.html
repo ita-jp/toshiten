@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <title th:text="${role.name}"></title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div>
+        <ul>
+            <li>
+                <span>ID:</span>
+                <span th:text="${role.id}"></span>
+            </li>
+            <li>
+                <span>Name:</span>
+                <span th:text="${role.name}"></span>
+            </li>
+            <li>
+                <span>Permissions:</span>
+                <span th:text="${role.permissions}"></span>
+            </li>
+        </ul>
+    </div>
+</section>
+</body>
+</html>

@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -18,5 +19,18 @@ public class SystemController {
     public String listRole(Model model) {
         model.addAttribute("roleList", accessControlService.findAllRoles());
         return "sys/roles/list";
+    }
+
+    @GetMapping("/roles/{id}")
+    public String showRole(@PathVariable long id, Model model) {
+        accessControlService.findRoleById(id)
+                .ifPresentOrElse(
+                        role -> model.addAttribute("role", role),
+                        () -> {
+                            throw new IllegalArgumentException("Role not found"); // TODO custom exception and error page
+                        }
+                );
+
+        return "sys/roles/detail";
     }
 }
