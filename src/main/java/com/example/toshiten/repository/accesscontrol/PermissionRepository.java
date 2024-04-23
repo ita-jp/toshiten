@@ -19,4 +19,13 @@ public interface PermissionRepository {
             ORDER BY p.id
             """)
     List<Permission> selectByRoleId(long roleId);
+
+    @Select("""
+            SELECT
+                p.id
+              , p.name
+            FROM permissions p
+            ORDER BY p.id 
+            """)
+    List<Permission> selectAll();
 }

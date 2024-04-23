@@ -24,8 +24,9 @@ public class SystemController {
     @GetMapping("/roles/{id}")
     public String showRole(@PathVariable long id, Model model) {
         accessControlService.findRoleById(id)
+                .map(roleEntity -> RoleDTO.from(roleEntity, accessControlService.findAllPermissions()))
                 .ifPresentOrElse(
-                        role -> model.addAttribute("role", role),
+                        roleDTO -> model.addAttribute("role", roleDTO),
                         () -> {
                             throw new IllegalArgumentException("Role not found"); // TODO custom exception and error page
                         }

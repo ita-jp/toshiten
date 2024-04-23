@@ -40,6 +40,10 @@ VALUES (1, 'SystemAdmin')
 INSERT INTO permissions (id, name)
 VALUES (1, 'AccessControl:Read')
      , (2, 'AccessControl:Write')
+     , (3, 'Cast:Create')
+     , (4, 'Cast:Read')
+     , (5, 'Cast:Update')
+     , (6, 'Cast:Delete')
 ;
 
 -- role_id=1: SystemAdmin
