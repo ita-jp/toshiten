@@ -19,7 +19,13 @@
             </li>
             <li>
                 <span>Permissions:</span>
-                <span th:text="${role.permissions}"></span>
+                <span th:if="${role.permissions.empty}">(empty)</span>
+                <!-- If not empty, iterate over permissions and display each name -->
+                <ul th:unless="${role.permissions.empty}">
+                    <li th:each="permission : ${role.permissions}">
+                        <span th:text="${permission.name}"></span>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>

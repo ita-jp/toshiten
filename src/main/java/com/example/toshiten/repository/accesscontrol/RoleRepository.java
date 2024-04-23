@@ -1,4 +1,4 @@
-package com.example.toshiten.repository.role;
+package com.example.toshiten.repository.accesscontrol;
 
 import com.example.toshiten.service.accesscontrol.Role;
 import org.apache.ibatis.annotations.Mapper;

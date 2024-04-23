@@ -2,7 +2,6 @@ package com.example.toshiten.service.accesscontrol;
 
 import lombok.Data;
 
-import java.security.Permission;
 import java.util.List;
 
 @Data
