@@ -29,26 +29,27 @@ CREATE TABLE IF NOT EXISTS role_permissions
 );
 
 INSERT INTO roles (id, name)
-VALUES (1, 'SystemAdmin');
-INSERT INTO roles (id, name)
-VALUES (2, 'SystemOperator');
-INSERT INTO roles (id, name)
-VALUES (3, 'ShopManager');
-INSERT INTO roles (id, name)
-VALUES (4, 'ShopCast');
-INSERT INTO roles (id, name)
-VALUES (5, 'MemberCustomer');
-INSERT INTO roles (id, name)
-VALUES (6, 'GuestCustomer');
+VALUES (1, 'SystemAdmin')
+     , (2, 'SystemOperator')
+     , (3, 'ShopManager')
+     , (4, 'ShopCast')
+     , (5, 'MemberCustomer')
+     , (6, 'GuestCustomer')
+;
 
 INSERT INTO permissions (id, name)
-VALUES (1, 'AccessControl:Read');
-INSERT INTO permissions (id, name)
-VALUES (2, 'AccessControl:Write');
+VALUES (1, 'AccessControl:Read')
+     , (2, 'AccessControl:Write')
+;
 
-INSERT INTO role_permissions (role_id, permission_id) VALUES (1, 1);
-INSERT INTO role_permissions (role_id, permission_id) VALUES (1, 2);
+-- role_id=1: SystemAdmin
+INSERT INTO role_permissions (role_id, permission_id)
+VALUES (1, 1)
+     , (1, 2)
+;
 
 -- password = rootpass
-INSERT INTO users (id, username, password) VALUES (1, 'root', '{bcrypt}$2a$10$hSPRcBpvCw5Txk/xm8Zmre1xTCZjhh/GsfEyCPTwZrKrKa4pQ7d12');
-INSERT INTO user_roles (user_id, role_id) VALUES (1, 1);
+INSERT INTO users (id, username, password)
+VALUES (1, 'root', '{bcrypt}$2a$10$hSPRcBpvCw5Txk/xm8Zmre1xTCZjhh/GsfEyCPTwZrKrKa4pQ7d12');
+INSERT INTO user_roles (user_id, role_id)
+VALUES (1, 1);
