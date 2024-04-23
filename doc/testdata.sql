@@ -1,7 +1,7 @@
 DELETE FROM users;
 
 -- password = password1
-INSERT INTO users (id, username, password, enabled) VALUES(1, 'user1', '{bcrypt}$2a$10$V5.eihv7khLDkNcz8moUgewodj4BgkA66DsB.LGsWOvbGh4Cg5YIq', true);
+INSERT INTO users (username, password, enabled) VALUES('user1', '{bcrypt}$2a$10$V5.eihv7khLDkNcz8moUgewodj4BgkA66DsB.LGsWOvbGh4Cg5YIq', true);
 
 DELETE FROM casts;
 DELETE FROM shops;
