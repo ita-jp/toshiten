@@ -8,6 +8,9 @@
 <body>
 <section layout:fragment="content" class="mt-3" th:object="${shop}">
     <h2 th:text="*{name}"></h2>
+    <ul class="list-group">
+        <li class="list-group-item"><a th:href="@{/sys/shops/{id}/casts(id=*{id})}">Cast</a></li>
+    </ul>
 </section>
 </body>
 </html>

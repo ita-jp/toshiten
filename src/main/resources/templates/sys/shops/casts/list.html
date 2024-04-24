@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <title>Casts</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cast : ${castList}" th:object="${cast}">
+                <th scope="row" th:text="*{id}"></th>
+                <td><a th:href="@{/sys/shops/{shopId}/casts/{castId}(shopId=${shopId},castId=*{id})}" th:text="*{name}"></a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>

@@ -91,4 +91,5 @@ public class SystemController {
         model.addAttribute("permissionList", accessControlService.findAllPermissions());
         return "sys/permissions/list";
     }
+
 }
