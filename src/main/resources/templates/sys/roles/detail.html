@@ -17,6 +17,9 @@
                             hx-target="#permission-view"
                             class="btn btn-primary">Edit
                     </button>
+                    <span class="text-success ms-1" th:if="${isUpdateSuccess}">
+                        Update is successful.
+                    </span>
                 </div>
                 <div th:if="${isEditMode}">
                     <button hx:get="@{/sys/roles/{id}(id=${role.id})}"
