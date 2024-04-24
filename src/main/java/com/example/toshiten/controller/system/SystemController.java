@@ -38,6 +38,23 @@ public class SystemController {
     }
 
     @GetMapping("/roles/{id}/edit")
+    public String showEditForm(@PathVariable long id, Model model) {
+        accessControlService.findRoleById(id)
+                .map(roleEntity -> RoleDTO.from(roleEntity, accessControlService.findAllPermissions()))
+                .ifPresentOrElse(
+                        roleDTO -> {
+                            model.addAttribute("role", roleDTO);
+                            model.addAttribute("isEditMode", true);
+                        },
+                        () -> {
+                            throw new IllegalArgumentException("Role not found"); // TODO custom exception and error page
+                        }
+                );
+
+        return "sys/roles/detail";
+    }
+
+    @GetMapping("/roles/{id}/edit")
     @HxRequest
     public String showEditFormForHtmx(@PathVariable long id, Model model) {
         accessControlService.findRoleById(id)

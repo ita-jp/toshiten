@@ -12,16 +12,22 @@
         <div id="permission-view" th:fragment="permission-view">
             <form th:action="@{/sys/roles/{id}(id=${role.id})}" th:method="put">
                 <div th:if="!${isEditMode}">
-                    <button hx:get="@{/sys/roles/{id}/edit(id=${role.id})}" hx-target="#permission-view"
+                    <button hx:get="@{/sys/roles/{id}/edit(id=${role.id})}"
+                            hx-push-url="true"
+                            hx-target="#permission-view"
                             class="btn btn-primary">Edit
                     </button>
                 </div>
                 <div th:if="${isEditMode}">
-                    <button hx:get="@{/sys/roles/{id}(id=${role.id})}" hx-target="#permission-view"
+                    <button hx:get="@{/sys/roles/{id}(id=${role.id})}"
+                            hx-push-url="true"
+                            hx-target="#permission-view"
                             class="btn btn-secondary">
                         Cancel
                     </button>
-                    <button hx:put="@{/sys/roles/{id}(id=${role.id})}" hx-target="#permission-view"
+                    <button hx:put="@{/sys/roles/{id}(id=${role.id})}"
+                            hx-push-url="true"
+                            hx-target="#permission-view"
                             class="btn btn-primary">
                         Submit
                     </button>
