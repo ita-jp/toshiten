@@ -18,7 +18,7 @@
       <tbody>
       <tr th:each="shop : ${shopList}" th:object="${shop}">
         <th scope="row" th:text="*{id}"></th>
-        <td th:text="*{name}"></td>
+        <td><a th:href="@{/sys/shops/{id}(id=*{id})}" th:text="*{name}"></a></td>
       </tr>
       </tbody>
     </table>

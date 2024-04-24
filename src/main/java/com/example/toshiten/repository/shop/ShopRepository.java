@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface ShopRepository {
@@ -16,4 +17,13 @@ public interface ShopRepository {
             FROM shops s
             """)
     List<ShopEntity> select();
+
+    @Select("""
+            SELECT
+                s.id
+              , s.name
+            FROM shops s
+            WHERE s.id = #{id}
+            """)
+    Optional<ShopEntity> selectById(long id);
 }
