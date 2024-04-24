@@ -1,0 +1,6 @@
+INSERT INTO shops (name)
+VALUES ('ブラックコーヒー専門店')
+     , ('あいうえお専門学校')
+     , ('みじん切り食堂')
+     , ('軍艦巻きイェイ')
+     , ('Super Thanks')
