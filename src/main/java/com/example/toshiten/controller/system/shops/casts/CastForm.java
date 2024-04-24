@@ -31,4 +31,8 @@ public record CastForm(
                 true
         );
     }
+
+    public CastForm() {
+        this(null, 0, 0, 0, 0, 0, null, null, null, null);
+    }
 }

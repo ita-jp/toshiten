@@ -8,7 +8,10 @@
 <body>
 <section layout:fragment="content" class="mt-3" th:object="${cast}">
     <h2 th:text="*{name}"></h2>
-
+    <div class="mt-3">
+        <a th:href="@{/sys/shops/{shopId}/casts/{castId}/edit(shopId=${shopId}, castId=${cast.id})}" class="btn btn-primary">Edit</a>
+        <a th:href="@{/sys/shops/{shopId}/casts(shopId=${shopId})}" class="btn btn-secondary">Back</a>
+    </div>
     <h3 class="mt-3">Profile</h3>
     <table class="table">
         <tbody>
