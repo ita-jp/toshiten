@@ -18,3 +18,10 @@ Spec
 
 - System > admin > all permissions
 - Others: no permissions
+
+## URL
+
+- /login
+- /logout
+- /shop/{shop_id}/cast/{cast_id}/post/{post_id}
+- /shop/{shop_id}/
