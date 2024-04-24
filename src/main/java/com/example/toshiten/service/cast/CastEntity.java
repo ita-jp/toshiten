@@ -1,7 +1,7 @@
 package com.example.toshiten.service.cast;
 
 public record CastEntity(
-        long id,
+        Long id,
         String name,
         int age,
         int height,

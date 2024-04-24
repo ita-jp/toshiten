@@ -1,5 +1,6 @@
 package com.example.toshiten.service.cast;
 
+import com.example.toshiten.controller.system.shops.casts.CastForm;
 import com.example.toshiten.repository.cast.CastMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,5 +20,9 @@ public class CastService {
 
     public Optional<CastEntity> findByCastId(long shopId, long castId) {
         return castMapper.selectByCastId(shopId, castId);
+    }
+
+    public void create(CastEntity entity) {
+        castMapper.insert(entity);
     }
 }

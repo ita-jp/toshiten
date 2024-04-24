@@ -1,6 +1,7 @@
 package com.example.toshiten.repository.cast;
 
 import com.example.toshiten.service.cast.CastEntity;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -51,4 +52,36 @@ public interface CastMapper {
               AND c.id = #{castId}
             """)
     Optional<CastEntity> selectByCastId(long shopId, long castId);
+
+    @Insert("""
+            INSERT INTO casts (
+                name
+              , age
+              , height
+              , size_bust
+              , size_waist
+              , size_hip
+              , zodiac_sign
+              , blood_type
+              , cast_comment
+              , shop_comment
+              , shop_id
+              , enabled
+            ) VALUES (
+                #{name}
+              , #{age}
+              , #{height}
+              , #{sizeBust}
+              , #{sizeWaist}
+              , #{sizeHip}
+              , #{zodiacSign}
+              , #{bloodType}
+              , #{castComment}
+              , #{shopComment}
+              , #{shopId}
+              , #{enabled}
+            )
+            """
+    )
+    void insert(CastEntity entity);
 }
