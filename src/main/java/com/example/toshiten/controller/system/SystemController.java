@@ -16,7 +16,11 @@ public class SystemController {
 
     @GetMapping("/roles")
     public String listRole(Model model) {
-        model.addAttribute("roleList", accessControlService.findAllRoles());
+        var roleList = accessControlService.findAllRoles()
+                .stream()
+                .map(RoleListElementDTO::from)
+                .toList();
+        model.addAttribute("roleList", roleList);
         return "sys/roles/list";
     }
 

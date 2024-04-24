@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Mapper
-public interface RoleRepository {
+public interface RoleMapper {
 
     @Select("""
             SELECT
@@ -27,4 +27,6 @@ public interface RoleRepository {
             WHERE r.id = #{id}
             """)
     Optional<Role> selectById(long id);
+
+    List<Role> selectAllWithPermissions();
 }

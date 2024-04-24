@@ -27,14 +27,14 @@ public record RoleDTO(
 
     private static List<PermissionSetting> toPermissionSettings(List<Permission> allPermissions, List<Permission> havingPermissions) {
         var havingPermissionNames = havingPermissions.stream()
-                .map(Permission::name)
+                .map(Permission::getName)
                 .toList();
 
         return allPermissions.stream()
                 .map(permission -> new PermissionSetting(
-                        permission.id(),
-                        permission.name(),
-                        havingPermissionNames.contains(permission.name()))
+                        permission.getId(),
+                        permission.getName(),
+                        havingPermissionNames.contains(permission.getName()))
                 )
                 .toList();
     }

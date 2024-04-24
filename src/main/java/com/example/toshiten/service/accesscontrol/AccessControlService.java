@@ -1,7 +1,7 @@
 package com.example.toshiten.service.accesscontrol;
 
 import com.example.toshiten.repository.accesscontrol.PermissionRepository;
-import com.example.toshiten.repository.accesscontrol.RoleRepository;
+import com.example.toshiten.repository.accesscontrol.RoleMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -16,11 +16,11 @@ public class AccessControlService {
 
     private static final String CACHE_ALL_PERMISSIONS = "name";
 
-    private final RoleRepository roleRepository;
+    private final RoleMapper roleRepository;
     private final PermissionRepository permissionRepository;
 
     public List<Role> findAllRoles() {
-        return roleRepository.select();
+        return roleRepository.selectAllWithPermissions();
     }
 
     public Optional<Role> findRoleById(long id) {

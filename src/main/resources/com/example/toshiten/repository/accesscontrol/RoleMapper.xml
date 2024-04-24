@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.toshiten.repository.accesscontrol.RoleMapper">
+
+    <resultMap id="roleResultMap" type="com.example.toshiten.service.accesscontrol.Role">
+        <id column="role_id" property="id"/>
+        <result column="role_name" property="name"/>
+        <collection property="permissions" ofType="com.example.toshiten.service.accesscontrol.Permission">
+            <id column="permission_id" property="id"/>
+            <result column="permission_name" property="name"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectAllWithPermissions" resultMap="roleResultMap">
+        SELECT r.id   AS role_id,
+               r.name AS role_name,
+               p.id   AS permission_id,
+               p.name AS permission_name
+        FROM roles r
+                 LEFT JOIN role_permissions rp ON r.id = rp.role_id
+                 LEFT JOIN permissions p ON rp.permission_id = p.id
+        ORDER BY r.id, p.id
+    </select>
+
+</mapper>
