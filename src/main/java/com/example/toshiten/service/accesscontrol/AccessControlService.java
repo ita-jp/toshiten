@@ -5,6 +5,7 @@ import com.example.toshiten.repository.accesscontrol.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,5 +35,11 @@ public class AccessControlService {
     @Cacheable(CACHE_ALL_PERMISSIONS)
     public List<Permission> findAllPermissions() {
         return permissionRepository.selectAll();
+    }
+
+    @Transactional
+    public void updateRolePermissions(long roleId, List<Long> permissions) {
+        permissionRepository.deleteByRoleId(roleId);
+        permissionRepository.insert(roleId, permissions);
     }
 }

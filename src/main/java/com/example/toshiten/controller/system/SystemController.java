@@ -1,12 +1,11 @@
 package com.example.toshiten.controller.system;
 
 import com.example.toshiten.service.accesscontrol.AccessControlService;
+import io.github.wimdeblauwe.htmx.spring.boot.mvc.HxRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/sys")
@@ -26,12 +25,70 @@ public class SystemController {
         accessControlService.findRoleById(id)
                 .map(roleEntity -> RoleDTO.from(roleEntity, accessControlService.findAllPermissions()))
                 .ifPresentOrElse(
-                        roleDTO -> model.addAttribute("role", roleDTO),
+                        roleDTO -> {
+                            model.addAttribute("role", roleDTO);
+                            model.addAttribute("isEditMode", false);
+                        },
                         () -> {
                             throw new IllegalArgumentException("Role not found"); // TODO custom exception and error page
                         }
                 );
 
         return "sys/roles/detail";
+    }
+
+    @GetMapping("/roles/{id}/edit")
+    @HxRequest
+    public String showEditFormForHtmx(@PathVariable long id, Model model) {
+        accessControlService.findRoleById(id)
+                .map(roleEntity -> RoleDTO.from(roleEntity, accessControlService.findAllPermissions()))
+                .ifPresentOrElse(
+                        roleDTO -> {
+                            model.addAttribute("role", roleDTO);
+                            model.addAttribute("isEditMode", true);
+                        },
+                        () -> {
+                            throw new IllegalArgumentException("Role not found"); // TODO custom exception and error page
+                        }
+                );
+
+        return "sys/roles/detail :: permission-view";
+    }
+
+    @GetMapping("/roles/{id}")
+    @HxRequest
+    public String showDetailForHtmx(@PathVariable long id, Model model) {
+        accessControlService.findRoleById(id)
+                .map(roleEntity -> RoleDTO.from(roleEntity, accessControlService.findAllPermissions()))
+                .ifPresentOrElse(
+                        roleDTO -> {
+                            model.addAttribute("role", roleDTO);
+                            model.addAttribute("isEditMode", false);
+                        },
+                        () -> {
+                            throw new IllegalArgumentException("Role not found"); // TODO custom exception and error page
+                        }
+                );
+
+        return "sys/roles/detail :: permission-view";
+    }
+
+    @PutMapping("/roles/{id}")
+    @HxRequest
+    public String updateForHtmx(@PathVariable long id, PermissionsForm form, Model model) {
+        accessControlService.updateRolePermissions(id, form.permissions());
+        accessControlService.findRoleById(id)
+                .map(roleEntity -> RoleDTO.from(roleEntity, accessControlService.findAllPermissions()))
+                .ifPresentOrElse(
+                        roleDTO -> {
+                            model.addAttribute("role", roleDTO);
+                            model.addAttribute("isEditMode", false);
+                        },
+                        () -> {
+                            throw new IllegalArgumentException("Role not found"); // TODO custom exception and error page
+                        }
+                );
+
+        return "sys/roles/detail :: permission-view";
     }
 }

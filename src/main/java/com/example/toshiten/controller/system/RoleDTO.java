@@ -11,6 +11,7 @@ public record RoleDTO(
         List<PermissionSetting> permissions
 ) {
     public record PermissionSetting(
+            long id,
             String name,
             boolean enabled
     ) {
@@ -30,7 +31,11 @@ public record RoleDTO(
                 .toList();
 
         return allPermissions.stream()
-                .map(permission -> new PermissionSetting(permission.name(), havingPermissionNames.contains(permission.name())))
+                .map(permission -> new PermissionSetting(
+                        permission.id(),
+                        permission.name(),
+                        havingPermissionNames.contains(permission.name()))
+                )
                 .toList();
     }
 }
