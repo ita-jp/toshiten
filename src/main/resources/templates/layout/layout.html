@@ -34,10 +34,9 @@
                         </a>
                         <ul class="dropdown-menu" sec:authorize="isAuthenticated() and hasAuthority('AccessControl:Read')">
                             <li><a class="dropdown-item" th:href="@{/sys/shops}">Shop</a></li>
-                            <li><a class="dropdown-item" th:href="@{/sys/roles}">Roles</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" th:href="@{/sys/roles}">Roles</a></li>
+                            <li><a class="dropdown-item" th:href="@{/sys/permissions}">Permissions</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

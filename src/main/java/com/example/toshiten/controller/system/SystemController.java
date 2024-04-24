@@ -85,4 +85,10 @@ public class SystemController {
 
         return "sys/roles/detail :: permission-view";
     }
+
+    @GetMapping("/permissions")
+    public String listPermission(Model model) {
+        model.addAttribute("permissionList", accessControlService.findAllPermissions());
+        return "sys/permissions/list";
+    }
 }
