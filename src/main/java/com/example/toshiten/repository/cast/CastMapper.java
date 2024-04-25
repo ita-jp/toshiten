@@ -103,4 +103,10 @@ public interface CastMapper {
             WHERE id = #{id}
             """)
     void update(CastEntity entity);
+
+    @Insert("""
+            INSERT INTO cast_images (cast_id, path, display_order)
+            VALUES (#{castId}, #{path}, #{displayOrder})
+            """)
+    void insertImage(long castId, String path, int displayOrder);
 }

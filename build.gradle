@@ -44,6 +44,9 @@ dependencies {
     implementation 'org.webjars.npm:htmx.org:1.9.12'
     implementation 'io.github.wimdeblauwe:htmx-spring-boot:3.3.0'
     implementation 'io.github.wimdeblauwe:htmx-spring-boot-thymeleaf:3.3.0'
+    implementation platform("io.awspring.cloud:spring-cloud-aws-dependencies:${springCloudAwsVersion}")
+    implementation 'io.awspring.cloud:spring-cloud-aws-starter'
+    implementation 'io.awspring.cloud:spring-cloud-aws-starter-s3'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.mysql:mysql-connector-j'
