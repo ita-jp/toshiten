@@ -4,6 +4,7 @@ import com.example.toshiten.service.cast.CastEntity;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 import java.util.Optional;
@@ -84,4 +85,22 @@ public interface CastMapper {
             """
     )
     void insert(CastEntity entity);
+
+    @Update("""
+            UPDATE casts
+            SET
+                name = #{name}
+              , age = #{age}
+              , height = #{height}
+              , size_bust = #{sizeBust}
+              , size_waist = #{sizeWaist}
+              , size_hip = #{sizeHip}
+              , zodiac_sign = #{zodiacSign}
+              , blood_type = #{bloodType}
+              , cast_comment = #{castComment}
+              , shop_comment = #{shopComment}
+              , enabled = #{enabled}
+            WHERE id = #{id}
+            """)
+    void update(CastEntity entity);
 }

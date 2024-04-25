@@ -50,11 +50,11 @@ public class CastController {
     @GetMapping("/new")
     public String showCreationForm(
             @PathVariable("shopId") long shopId,
+            @ModelAttribute CastForm form,
             Model model
     ) {
         model.addAttribute("shopId", shopId);
         model.addAttribute("mode", "CREATE");
-        model.addAttribute("cast", new CastForm());
         return "sys/shops/casts/form";
     }
 
@@ -80,7 +80,7 @@ public class CastController {
         castService.findByCastId(shopId, castId)
                 .ifPresentOrElse(
                         cast -> {
-                            model.addAttribute("cast", cast);
+                            model.addAttribute("castForm", CastForm.from(cast));
                             model.addAttribute("mode", "EDIT");
                         },
                         () -> {
@@ -88,6 +88,20 @@ public class CastController {
                         }
                 );
         return "sys/shops/casts/form";
+    }
+    
+    @PutMapping("/{castId}")
+    public String update(
+            @PathVariable("shopId") long shopId,
+            @PathVariable("castId") long castId,
+            @Validated CastForm form,
+            BindingResult bindingResult
+    ) {
+        if (bindingResult.hasErrors()) {
+            return "sys/shops/casts/form";
+        }
+        castService.update(form.toEntity(shopId, castId));
+        return "redirect:/sys/shops/{shopId}/casts";
     }
 
 }

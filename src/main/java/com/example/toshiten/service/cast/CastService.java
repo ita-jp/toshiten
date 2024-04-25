@@ -25,4 +25,8 @@ public class CastService {
     public void create(CastEntity entity) {
         castMapper.insert(entity);
     }
+
+    public void update(CastEntity entity) {
+        castMapper.update(entity);
+    }
 }
