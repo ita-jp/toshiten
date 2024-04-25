@@ -14,6 +14,11 @@ public class SystemController {
 
     private final AccessControlService accessControlService;
 
+    @GetMapping
+    public String index() {
+        return "sys/index";
+    }
+
     @GetMapping("/roles")
     public String listRole(Model model) {
         var roleList = accessControlService.findAllRoles()
