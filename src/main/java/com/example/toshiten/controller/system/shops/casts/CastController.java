@@ -39,12 +39,15 @@ public class CastController {
         // TODO ログインユーザーの shopId とチェックしないとだめぽ
         castService.findByCastId(shopId, castId)
                 .ifPresentOrElse(
-                        cast -> model.addAttribute("cast", cast),
+                        cast -> {
+                            model.addAttribute("castForm", CastForm.from(cast));
+                            model.addAttribute("mode", "VIEW");
+                        },
                         () -> {
                             throw new RuntimeException("Cast not found"); // TODO 404 にしたい
                         }
                 );
-        return "sys/shops/casts/detail";
+        return "sys/shops/casts/form";
     }
 
     @GetMapping("/new")
